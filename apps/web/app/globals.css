@@ -61,3 +61,11 @@ body {
   @apply card;
   background: linear-gradient(180deg, rgba(255, 193, 7, 0.08), rgba(10, 10, 10, 0.7));
 }
+
+.pattern-adras {
+  background-image:
+    linear-gradient(135deg, rgba(232, 93, 4, 0.25) 0%, rgba(232, 93, 4, 0.05) 45%),
+    radial-gradient(160px 120px at 20% 30%, rgba(255, 193, 7, 0.25), transparent 60%),
+    radial-gradient(160px 120px at 80% 70%, rgba(255, 122, 0, 0.22), transparent 60%);
+  background-color: rgba(14, 14, 14, 0.9);
+}
