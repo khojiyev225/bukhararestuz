@@ -21,12 +21,16 @@ export default function TelegramPanel() {
 
   return (
     <main className="section py-16 space-y-6">
+      <div className="page-hero">
+        <span className="badge">TELEGRAM BOT</span>
+        <h1 className="text-3xl font-semibold mt-4">Telegram Bot Panel</h1>
+        <p className="text-neutral-400 mt-2">Bot sozlamalari, webhook va integratsiyalar.</p>
+      </div>
       <div className="card">
-        <h1 className="text-3xl font-semibold">Telegram Bot Panel</h1>
-        <p className="text-neutral-400 mt-2">Bot sozlamalari va webhook boshqaruvi.</p>
+        <h2 className="text-lg font-semibold">Webhook sozlash</h2>
         <div className="mt-4 grid md:grid-cols-2 gap-4">
           <input
-            className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-3"
+            className="input"
             placeholder="Webhook URL"
             value={webhookUrl}
             onChange={(e) => setWebhookUrl(e.target.value)}

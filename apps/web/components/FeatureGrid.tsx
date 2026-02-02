@@ -1,10 +1,10 @@
-import { Brain, CalendarCheck, ClipboardList, Truck } from 'lucide-react';
+import { Landmark, CalendarCheck, ClipboardList, Truck } from 'lucide-react';
 
 const features = [
   {
-    title: 'AI Analytics',
-    description: 'Admin panel orqali statistik tahlil va trendlarni ko‘rish.',
-    icon: Brain
+    title: 'Buxoro ruhi',
+    description: 'Milliy bezaklar va tarixiy kayfiyatda taomlar taqdimi.',
+    icon: Landmark
   },
   {
     title: 'Bron boshqaruvi',
@@ -25,14 +25,22 @@ const features = [
 
 export default function FeatureGrid() {
   return (
-    <section className="section grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-      {features.map((feature) => (
-        <div key={feature.title} className="card">
-          <feature.icon className="text-brand-500" />
-          <h3 className="text-lg font-semibold mt-4">{feature.title}</h3>
-          <p className="text-sm text-neutral-300 mt-2">{feature.description}</p>
-        </div>
-      ))}
+    <section className="section space-y-8">
+      <div>
+        <h2 className="section-title">Nega bizni tanlashadi</h2>
+        <p className="section-subtitle">
+          Milliy ruh, tezkor servis va boshqaruvning soddaligi.
+        </p>
+      </div>
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {features.map((feature) => (
+          <div key={feature.title} className="card">
+            <feature.icon className="text-brand-500" />
+            <h3 className="text-lg font-semibold mt-4">{feature.title}</h3>
+            <p className="text-sm text-neutral-300 mt-2">{feature.description}</p>
+          </div>
+        ))}
+      </div>
     </section>
   );
 }

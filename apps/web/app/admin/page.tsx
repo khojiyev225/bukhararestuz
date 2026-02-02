@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { apiFetch } from '../../lib/api';
 
@@ -20,20 +21,25 @@ export default function AdminDashboard() {
 
   return (
     <main className="section py-16 space-y-8">
-      <div className="card">
-        <h1 className="text-3xl font-semibold">Admin panel</h1>
-        <p className="text-neutral-400 mt-2">Barcha boshqaruv funksiyalari shu yerda.</p>
+      <div className="page-hero">
+        <span className="badge">ADMIN HUDUD</span>
+        <h1 className="text-3xl font-semibold mt-4">Admin panel</h1>
+        <p className="text-neutral-400 mt-2">Barcha boshqaruv funksiyalari, statistikalar va sozlamalar.</p>
+        <div className="mt-5 flex flex-wrap gap-3">
+          <Link href="/menu" className="button-outline">Menyuni ko‘rish</Link>
+          <Link href="/booking" className="button">Bronlar ro‘yxati</Link>
+        </div>
       </div>
       <div className="grid md:grid-cols-3 gap-6">
-        <div className="card">
+        <div className="stat-card">
           <p className="text-sm text-neutral-400">Buyurtmalar</p>
           <p className="text-3xl font-semibold mt-2">{stats?.orders ?? '—'}</p>
         </div>
-        <div className="card">
+        <div className="stat-card">
           <p className="text-sm text-neutral-400">Bronlar</p>
           <p className="text-3xl font-semibold mt-2">{stats?.bookings ?? '—'}</p>
         </div>
-        <div className="card">
+        <div className="stat-card">
           <p className="text-sm text-neutral-400">Mijozlar</p>
           <p className="text-3xl font-semibold mt-2">{stats?.users ?? '—'}</p>
         </div>

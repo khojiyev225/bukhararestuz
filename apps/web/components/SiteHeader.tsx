@@ -15,6 +15,7 @@ export default function SiteHeader() {
       <div className="section flex items-center justify-between py-5">
         <Link href="/" className="text-2xl font-semibold tracking-wide">
           BUKHARAREST.UZ
+          <span className="block text-xs text-neutral-400 tracking-[0.3em] mt-1">BUXORO RUHI</span>
         </Link>
         <nav className="hidden md:flex items-center gap-6 text-sm">
           {nav.map((item) => (

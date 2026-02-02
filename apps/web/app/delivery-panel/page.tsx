@@ -3,9 +3,10 @@
 export default function DeliveryPanel() {
   return (
     <main className="section py-16 space-y-8">
-      <div className="card">
-        <h1 className="text-3xl font-semibold">Yetkazib beruvchi panel</h1>
-        <p className="text-neutral-400 mt-2">Yetkazib berish buyurtmalari boshqaruvi.</p>
+      <div className="page-hero">
+        <span className="badge">DELIVERY</span>
+        <h1 className="text-3xl font-semibold mt-4">Yetkazib beruvchi panel</h1>
+        <p className="text-neutral-400 mt-2">Yetkazib berish buyurtmalari va statuslarni boshqarish.</p>
       </div>
       <div className="grid md:grid-cols-3 gap-6">
         {['Yangi buyurtmalar', 'Jarayonda', 'Yakunlangan'].map((title) => (

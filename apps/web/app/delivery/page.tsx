@@ -26,12 +26,17 @@ export default function DeliveryPage() {
   };
 
   return (
-    <main className="section py-16">
+    <main className="section py-16 space-y-8">
+      <div className="page-hero">
+        <span className="badge">YETKAZIB BERISH</span>
+        <h1 className="text-3xl font-semibold mt-4">Yetkazib berish</h1>
+        <p className="text-neutral-300 mt-2">Issiq taomlar, tez yetkazish va ishonchli xizmat.</p>
+      </div>
       <div className="max-w-2xl mx-auto card">
-        <h1 className="text-3xl font-semibold">Yetkazib berish</h1>
+        <h2 className="text-2xl font-semibold">Buyurtma ma'lumotlari</h2>
         <p className="text-neutral-300 mt-2">Buyurtmani tez va xavfsiz qabul qiling.</p>
         <div className="mt-6 space-y-4">
-          <input className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-3" placeholder="Yetkazib berish manzili" value={address} onChange={(e) => setAddress(e.target.value)} />
+          <input className="input" placeholder="Yetkazib berish manzili" value={address} onChange={(e) => setAddress(e.target.value)} />
           <button className="button" onClick={placeOrder}>Buyurtma berish</button>
           {status ? <p className="text-sm text-neutral-400">{status}</p> : null}
         </div>

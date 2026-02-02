@@ -33,7 +33,12 @@ export default function LoginPage() {
   };
 
   return (
-    <main className="section py-16">
+    <main className="section py-16 space-y-8">
+      <div className="page-hero">
+        <span className="badge">HISOBGA KIRISH</span>
+        <h1 className="text-3xl font-semibold mt-4">Kirish</h1>
+        <p className="text-neutral-300 mt-2">Telefon, Google yoki Apple orqali tezkor kirish.</p>
+      </div>
       <div className="max-w-xl mx-auto card">
         <h1 className="text-2xl font-semibold">Kirish</h1>
         <p className="text-sm text-neutral-400 mt-2">Telefon, Google yoki Apple orqali.</p>
@@ -44,27 +49,27 @@ export default function LoginPage() {
           </div>
         ) : (
           <div className="mt-6 space-y-4">
-          <input
-            className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-3"
-            placeholder="+998901234567"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-          />
-          <button className="button w-full" onClick={handlePhone}>SMS yuborish</button>
+            <input
+              className="input"
+              placeholder="+998901234567"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+            />
+            <button className="button w-full" onClick={handlePhone}>SMS yuborish</button>
 
-          <input
-            className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-3"
-            placeholder="SMS kod"
-            value={otp}
-            onChange={(e) => setOtp(e.target.value)}
-          />
-          <button className="button-outline w-full" onClick={confirmCode}>Tasdiqlash</button>
+            <input
+              className="input"
+              placeholder="SMS kod"
+              value={otp}
+              onChange={(e) => setOtp(e.target.value)}
+            />
+            <button className="button-outline w-full" onClick={confirmCode}>Tasdiqlash</button>
 
-          <div className="grid md:grid-cols-2 gap-3">
-            <button className="button-outline" onClick={() => auth && googleProvider && signInWithPopup(auth, googleProvider)}>Google</button>
-            <button className="button-outline" onClick={() => auth && appleProvider && signInWithPopup(auth, appleProvider)}>Apple</button>
+            <div className="grid md:grid-cols-2 gap-3">
+              <button className="button-outline" onClick={() => auth && googleProvider && signInWithPopup(auth, googleProvider)}>Google</button>
+              <button className="button-outline" onClick={() => auth && appleProvider && signInWithPopup(auth, appleProvider)}>Apple</button>
+            </div>
           </div>
-        </div>
         )}
         <div id="recaptcha-container" />
       </div>

@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { apiFetch } from '../../lib/api';
 
@@ -21,12 +22,19 @@ export default function MenuPage() {
   }, []);
 
   return (
-    <main className="section py-16">
-      <h1 className="text-3xl font-semibold">Menyu</h1>
-      <p className="text-neutral-300 mt-2">Taomnoma admin panel orqali boshqariladi.</p>
-      <div className="grid md:grid-cols-3 gap-6 mt-8">
+    <main className="section py-16 space-y-8">
+      <div className="page-hero">
+        <span className="badge">MILLIY TAOMLAR</span>
+        <h1 className="text-3xl font-semibold mt-4">Menyu</h1>
+        <p className="text-neutral-300 mt-2">Buxoro uslubidagi taomlar va zamonaviy taqdim.</p>
+        <div className="mt-5 flex flex-wrap gap-3">
+          <Link href="/booking" className="button">Stol band qilish</Link>
+          <Link href="/delivery" className="button-outline">Yetkazib berish</Link>
+        </div>
+      </div>
+      <div className="grid md:grid-cols-3 gap-6">
         {items.length === 0 ? (
-          <div className="text-neutral-400">Hozircha taomlar yo‘q.</div>
+          <div className="card text-neutral-400">Hozircha taomlar yo‘q.</div>
         ) : (
           items.map((item) => (
             <div key={item._id} className="card">
