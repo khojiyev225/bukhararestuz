@@ -5,6 +5,11 @@ const listBookings = async (req, res) => {
   res.json({ bookings });
 };
 
+const listMyBookings = async (req, res) => {
+  const bookings = await Booking.find({ user: req.user?._id }).sort({ createdAt: -1 });
+  res.json({ bookings });
+};
+
 const createBooking = async (req, res) => {
   const booking = await Booking.create({
     ...req.body,

@@ -1,11 +1,12 @@
 import Link from 'next/link';
-import { ChefHat, Utensils, CalendarDays, ShoppingBag, User } from 'lucide-react';
+import { ChefHat, Utensils, CalendarDays, ShoppingBag, User, UserCircle } from 'lucide-react';
 
 const nav = [
   { href: '/', label: 'Bosh sahifa', icon: ChefHat },
   { href: '/menu', label: 'Menyu', icon: Utensils },
   { href: '/booking', label: 'Stol bron', icon: CalendarDays },
   { href: '/delivery', label: 'Yetkazib berish', icon: ShoppingBag },
+  { href: '/profile', label: 'Profil', icon: UserCircle },
   { href: '/login', label: 'Kirish', icon: User }
 ];
 

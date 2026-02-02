@@ -6,6 +6,11 @@ const listOrders = async (req, res) => {
   res.json({ orders });
 };
 
+const listMyOrders = async (req, res) => {
+  const orders = await Order.find({ user: req.user?._id }).sort({ createdAt: -1 });
+  res.json({ orders });
+};
+
 const createOrder = async (req, res) => {
   const order = await Order.create({
     ...req.body,
@@ -20,4 +25,4 @@ const updateOrder = async (req, res) => {
   res.json({ order });
 };
 
-module.exports = { listOrders, createOrder, updateOrder };
+module.exports = { listOrders, listMyOrders, createOrder, updateOrder };
