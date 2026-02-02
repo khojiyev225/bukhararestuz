@@ -1,0 +1,41 @@
+'use client';
+
+import { useState } from 'react';
+import { apiFetch } from '../../lib/api';
+
+export default function BookingPage() {
+  const [form, setForm] = useState({ name: '', phone: '', date: '', guests: 2, notes: '' });
+  const [status, setStatus] = useState<string>('');
+
+  const handleSubmit = async () => {
+    try {
+      await apiFetch('/api/bookings', {
+        method: 'POST',
+        body: JSON.stringify({
+          ...form,
+          date: form.date ? new Date(form.date).toISOString() : undefined
+        })
+      });
+      setStatus('Bron qabul qilindi!');
+    } catch (error) {
+      setStatus('Bron yuborishda xatolik.');
+    }
+  };
+
+  return (
+    <main className="section py-16">
+      <div className="max-w-2xl mx-auto card">
+        <h1 className="text-3xl font-semibold">Stol bron qilish</h1>
+        <div className="grid md:grid-cols-2 gap-4 mt-6">
+          <input className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-3" placeholder="Ism" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
+          <input className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-3" placeholder="Telefon" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} />
+          <input className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-3" type="date" value={form.date} onChange={(e) => setForm({ ...form, date: e.target.value })} />
+          <input className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-3" type="number" value={form.guests} onChange={(e) => setForm({ ...form, guests: Number(e.target.value) })} />
+          <textarea className="md:col-span-2 w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-3" placeholder="Izoh" value={form.notes} onChange={(e) => setForm({ ...form, notes: e.target.value })} />
+        </div>
+        <button className="button mt-6" onClick={handleSubmit}>Bron qilish</button>
+        {status ? <p className="text-sm text-neutral-400 mt-3">{status}</p> : null}
+      </div>
+    </main>
+  );
+}
