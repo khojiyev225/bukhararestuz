@@ -5,7 +5,7 @@ const { listOrders, createOrder, updateOrder } = require('../controllers/order.c
 const router = express.Router();
 
 router.get('/', requireAuth, requireRole(['admin', 'manager', 'delivery']), listOrders);
-router.post('/', requireAuth, createOrder);
+router.post('/', createOrder);
 router.put('/:id', requireAuth, requireRole(['admin', 'manager', 'delivery']), updateOrder);
 
 module.exports = router;

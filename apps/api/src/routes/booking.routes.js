@@ -5,7 +5,7 @@ const { listBookings, createBooking, updateBooking } = require('../controllers/b
 const router = express.Router();
 
 router.get('/', requireAuth, requireRole(['admin', 'manager']), listBookings);
-router.post('/', requireAuth, createBooking);
+router.post('/', createBooking);
 router.put('/:id', requireAuth, requireRole(['admin', 'manager']), updateBooking);
 
 module.exports = router;
