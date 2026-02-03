@@ -36,8 +36,8 @@ export default function RegisterPage() {
     <main className="section py-16 space-y-8">
       <div className="page-hero">
         <span className="badge">RO‘YXATDAN O‘TISH</span>
-        <h1 className="text-3xl font-semibold mt-4">Ro‘yxatdan o‘tish</h1>
-        <p className="text-neutral-400 mt-2">Telefon orqali tezkor ro‘yxatdan o‘tish.</p>
+        <h1 className="text-3xl font-semibold mt-4 text-[#173a2a]">Ro‘yxatdan o‘tish</h1>
+        <p className="text-[#6b5a2b] mt-2">Telefon orqali tezkor ro‘yxatdan o‘tish.</p>
       </div>
       <div className="max-w-xl mx-auto card">
         <h1 className="text-2xl font-semibold">Ro'yxatdan o'tish</h1>
@@ -59,7 +59,7 @@ export default function RegisterPage() {
               onChange={(e) => setOtp(e.target.value)}
             />
             <button className="button-outline w-full" onClick={confirmCode}>Tasdiqlash</button>
-            {message && <p className="text-sm text-neutral-500">{message}</p>}
+            {message && <p className="text-sm text-[#8b7b45]">{message}</p>}
           </div>
         )}
         <div id="recaptcha-register" />

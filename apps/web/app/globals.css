@@ -22,7 +22,7 @@ body {
 }
 
 .section-subtitle {
-  @apply text-neutral-300 mt-2;
+  @apply text-[#6b5a2b] mt-2;
 }
 
 .card {

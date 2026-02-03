@@ -74,7 +74,7 @@ export default function AdminDashboard() {
       {authChecked && !currentUser ? (
         <div className="card">
           <h2 className="text-xl font-semibold">Admin panel</h2>
-          <p className="text-sm text-neutral-400 mt-2">
+          <p className="text-sm text-[#6b5a2b] mt-2">
             Admin panelga kirish uchun tizimga kiring va admin ruxsatiga ega bo‘ling.
           </p>
           <div className="mt-4 flex gap-3">
@@ -85,24 +85,24 @@ export default function AdminDashboard() {
       ) : null}
       <div className="page-hero">
         <span className="badge">ADMIN HUDUD</span>
-        <h1 className="text-3xl font-semibold mt-4">Admin panel</h1>
-        <p className="text-neutral-400 mt-2">Barcha boshqaruv funksiyalari, statistikalar va sozlamalar.</p>
+        <h1 className="text-3xl font-semibold mt-4 text-[#173a2a]">Admin panel</h1>
+        <p className="text-[#6b5a2b] mt-2">Barcha boshqaruv funksiyalari, statistikalar va sozlamalar.</p>
         <div className="mt-5 flex flex-wrap gap-3">
           <Link href="/menu" className="button-outline">Menyuni ko‘rish</Link>
-          <Link href="/booking" className="button">Bronlar ro‘yxati</Link>
+          <Link href="/reservation" className="button">Bronlar ro‘yxati</Link>
         </div>
       </div>
       <div className="grid md:grid-cols-3 gap-6">
         <div className="stat-card">
-          <p className="text-sm text-neutral-400">Buyurtmalar</p>
+          <p className="text-sm text-[#7a6b3b]">Buyurtmalar</p>
           <p className="text-3xl font-semibold mt-2">{stats?.orders ?? '—'}</p>
         </div>
         <div className="stat-card">
-          <p className="text-sm text-neutral-400">Bronlar</p>
+          <p className="text-sm text-[#7a6b3b]">Bronlar</p>
           <p className="text-3xl font-semibold mt-2">{stats?.bookings ?? '—'}</p>
         </div>
         <div className="stat-card">
-          <p className="text-sm text-neutral-400">Mijozlar</p>
+          <p className="text-sm text-[#7a6b3b]">Mijozlar</p>
           <p className="text-3xl font-semibold mt-2">{stats?.users ?? '—'}</p>
         </div>
       </div>
@@ -110,7 +110,7 @@ export default function AdminDashboard() {
         {['Menyu', 'Bronlar', 'Buyurtmalar', 'Analitika', 'Foydalanuvchilar', 'Sozlamalar'].map((title) => (
           <div key={title} className="card">
             <h3 className="text-lg font-semibold">{title}</h3>
-            <p className="text-sm text-neutral-400 mt-2">Tezkor boshqaruv bloklari</p>
+            <p className="text-sm text-[#6b5a2b] mt-2">Tezkor boshqaruv bloklari</p>
           </div>
         ))}
       </div>
@@ -143,24 +143,24 @@ export default function AdminDashboard() {
           />
         </div>
         <button className="button mt-4" onClick={handleCreateMenu}>Menyu qo‘shish</button>
-        {menuStatus ? <p className="text-sm text-neutral-400 mt-2">{menuStatus}</p> : null}
+        {menuStatus ? <p className="text-sm text-[#8b7b45] mt-2">{menuStatus}</p> : null}
       </div>
       <div className="card">
         <h2 className="text-xl font-semibold">So‘nggi bronlar</h2>
         <div className="mt-4 space-y-3">
           {bookings.length === 0 ? (
-            <p className="text-sm text-neutral-400">Hozircha bronlar yo‘q.</p>
+            <p className="text-sm text-[#8b7b45]">Hozircha bronlar yo‘q.</p>
           ) : (
             bookings.slice(0, 6).map((booking) => (
-              <div key={booking._id} className="flex flex-wrap items-center justify-between gap-2 border border-neutral-800 rounded-xl px-4 py-3">
+              <div key={booking._id} className="flex flex-wrap items-center justify-between gap-2 border border-[#e2cf9b] rounded-xl px-4 py-3">
                 <div>
                   <p className="text-sm font-semibold">{booking.name}</p>
-                  <p className="text-xs text-neutral-400">{booking.phone}</p>
+                  <p className="text-xs text-[#7a6b3b]">{booking.phone}</p>
                 </div>
-                <div className="text-xs text-neutral-400">
+                <div className="text-xs text-[#7a6b3b]">
                   {new Date(booking.date).toLocaleDateString('uz-UZ')} • {booking.guests} kishi
                 </div>
-                <span className="text-xs text-brand-500 uppercase">{booking.status}</span>
+                <span className="text-xs text-[#c9a145] uppercase">{booking.status}</span>
               </div>
             ))
           )}
@@ -168,7 +168,7 @@ export default function AdminDashboard() {
       </div>
       <div className="card">
         <h2 className="text-xl font-semibold">Rasm va taomnoma boshqaruvi</h2>
-        <p className="text-sm text-neutral-400 mt-2">Admin panel orqali rasm, menyu va bannerlarni yangilash.</p>
+        <p className="text-sm text-[#6b5a2b] mt-2">Admin panel orqali rasm, menyu va bannerlarni yangilash.</p>
       </div>
     </main>
   );

@@ -10,29 +10,29 @@ export default function AboutSection() {
         </p>
         <div className="grid sm:grid-cols-2 gap-4">
           <div className="card">
-            <p className="text-sm text-neutral-400">Taomlar</p>
-            <p className="text-2xl font-semibold mt-2">Milliy & zamonaviy</p>
+            <p className="text-xs text-[#7a6b3b]">Taomlar</p>
+            <p className="text-2xl font-semibold mt-2 text-[#173a2a]">Milliy & zamonaviy</p>
           </div>
           <div className="card">
-            <p className="text-sm text-neutral-400">Xizmat</p>
-            <p className="text-2xl font-semibold mt-2">Mehmondo‘st</p>
+            <p className="text-xs text-[#7a6b3b]">Xizmat</p>
+            <p className="text-2xl font-semibold mt-2 text-[#173a2a]">Mehmondo‘st</p>
           </div>
         </div>
       </div>
       <div className="card pattern-adras">
         <div className="space-y-3">
-          <h3 className="text-xl font-semibold">Buxoro ruhi</h3>
-          <p className="text-sm text-neutral-300">
+          <h3 className="text-xl font-semibold text-[#173a2a]">Buxoro ruhi</h3>
+          <p className="text-sm text-[#6b5a2b]">
             Adras naqshlari ilhomidagi bezak, mayin yorug‘lik va iliq atmosfera.
           </p>
           <div className="grid sm:grid-cols-2 gap-3">
-            <div className="rounded-xl border border-neutral-800 p-4">
-              <p className="text-xs text-neutral-400">Manzil</p>
-              <p className="text-sm font-semibold">Buxoro, Markaziy ko‘cha</p>
+            <div className="rounded-xl border border-[#e2cf9b] bg-white/70 p-4">
+              <p className="text-xs text-[#7a6b3b]">Manzil</p>
+              <p className="text-sm font-semibold text-[#173a2a]">Buxoro, Markaziy ko‘cha</p>
             </div>
-            <div className="rounded-xl border border-neutral-800 p-4">
-              <p className="text-xs text-neutral-400">Ish vaqti</p>
-              <p className="text-sm font-semibold">09:00–23:00</p>
+            <div className="rounded-xl border border-[#e2cf9b] bg-white/70 p-4">
+              <p className="text-xs text-[#7a6b3b]">Ish vaqti</p>
+              <p className="text-sm font-semibold text-[#173a2a]">09:00–23:00</p>
             </div>
           </div>
         </div>

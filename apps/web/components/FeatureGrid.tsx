@@ -1,26 +1,21 @@
-import { Landmark, CalendarCheck, ClipboardList, Truck } from 'lucide-react';
-
 const features = [
   {
-    title: 'Buxoro ruhi',
-    description: 'Milliy bezaklar va tarixiy kayfiyatda taomlar taqdimi.',
-    icon: Landmark
+    title: 'Milliy taomlar',
+    description:
+      'Buxoro oshxonasi an’analari va zamonaviy taqdimot uyg‘unligi.',
   },
   {
-    title: 'Bron boshqaruvi',
-    description: 'Stol bronlari real vaqt rejimida nazorat qilinadi.',
-    icon: CalendarCheck
+    title: 'Premium servis',
+    description: 'Mehmonlarga alohida e’tibor va nafis xizmat madaniyati.',
   },
   {
-    title: 'Buyurtma oqimi',
-    description: 'Manager va admin uchun buyurtmalar nazorati.',
-    icon: ClipboardList
+    title: 'Onlayn bron',
+    description: 'Stolni oldindan band qiling, tasdiq va eslatmalar oling.',
   },
   {
-    title: 'Yetkazib berish',
-    description: 'Delivery panel orqali buyurtmalarni boshqarish.',
-    icon: Truck
-  }
+    title: 'Banket va tadbirlar',
+    description: 'Bayramlar va marosimlar uchun maxsus zal va menyu.',
+  },
 ];
 
 export default function FeatureGrid() {
@@ -35,9 +30,9 @@ export default function FeatureGrid() {
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
         {features.map((feature) => (
           <div key={feature.title} className="card">
-            <feature.icon className="text-brand-500" />
-            <h3 className="text-lg font-semibold mt-4">{feature.title}</h3>
-            <p className="text-sm text-neutral-300 mt-2">{feature.description}</p>
+            <p className="text-xs text-[#7a6b3b]">Xizmat</p>
+            <h3 className="text-lg font-semibold text-[#173a2a] mt-2">{feature.title}</h3>
+            <p className="text-sm text-[#6b5a2b] mt-2">{feature.description}</p>
           </div>
         ))}
       </div>

@@ -33,12 +33,12 @@ export default function LoginPage() {
     <main className="section py-16 space-y-8">
       <div className="page-hero">
         <span className="badge">HISOBGA KIRISH</span>
-        <h1 className="text-3xl font-semibold mt-4">Kirish</h1>
-        <p className="text-neutral-300 mt-2">Telefon, Google yoki Apple orqali tezkor kirish.</p>
+        <h1 className="text-3xl font-semibold mt-4 text-[#173a2a]">Kirish</h1>
+        <p className="text-[#6b5a2b] mt-2">Telefon, Google yoki Apple orqali tezkor kirish.</p>
       </div>
       <div className="max-w-xl mx-auto card">
         <h1 className="text-2xl font-semibold">Kirish</h1>
-        <p className="text-sm text-neutral-400 mt-2">Telefon yoki Google orqali.</p>
+        <p className="text-sm text-[#6b5a2b] mt-2">Telefon yoki Google orqali.</p>
 
         {!firebaseReady ? (
           <div className="mt-6 text-sm text-red-300">

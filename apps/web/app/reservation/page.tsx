@@ -27,8 +27,8 @@ export default function ReservationPage() {
     <main className="section py-16 space-y-8">
       <div className="page-hero">
         <span className="badge">BRON</span>
-        <h1 className="text-3xl font-semibold mt-4">Bron qilish</h1>
-        <p className="text-neutral-400 mt-2">Sana va mehmonlar sonini tanlang.</p>
+        <h1 className="text-3xl font-semibold mt-4 text-[#173a2a]">Bron qilish</h1>
+        <p className="text-[#6b5a2b] mt-2">Sana va mehmonlar sonini tanlang.</p>
       </div>
       <div className="card max-w-3xl mx-auto space-y-4">
         <input className="input" placeholder="Ism" value={name} onChange={(e) => setName(e.target.value)} />
@@ -37,7 +37,7 @@ export default function ReservationPage() {
         <input className="input" type="number" min={1} value={guests} onChange={(e) => setGuests(Number(e.target.value))} />
         <textarea className="textarea" placeholder="Izoh" value={notes} onChange={(e) => setNotes(e.target.value)} />
         <button onClick={submit} className="button w-full">Bron yuborish</button>
-        {message && <p className="text-sm text-neutral-500">{message}</p>}
+        {message && <p className="text-sm text-[#8b7b45]">{message}</p>}
       </div>
     </main>
   );

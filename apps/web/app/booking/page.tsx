@@ -26,8 +26,8 @@ export default function BookingPage() {
     <main className="section py-16 space-y-8">
       <div className="page-hero">
         <span className="badge">STOL BRON</span>
-        <h1 className="text-3xl font-semibold mt-4">Stol band qilish</h1>
-        <p className="text-neutral-300 mt-2">Mehmonlaringiz uchun qulay joyni oldindan tayyorlab qo‘yamiz.</p>
+        <h1 className="text-3xl font-semibold mt-4 text-[#173a2a]">Stol band qilish</h1>
+        <p className="text-[#6b5a2b] mt-2">Mehmonlaringiz uchun qulay joyni oldindan tayyorlab qo‘yamiz.</p>
       </div>
       <div className="max-w-2xl mx-auto card">
         <h2 className="text-2xl font-semibold">Bron ma'lumotlari</h2>
@@ -39,7 +39,7 @@ export default function BookingPage() {
           <textarea className="textarea md:col-span-2" placeholder="Izoh" value={form.notes} onChange={(e) => setForm({ ...form, notes: e.target.value })} />
         </div>
         <button className="button mt-6" onClick={handleSubmit}>Bron qilish</button>
-        {status ? <p className="text-sm text-neutral-400 mt-3">{status}</p> : null}
+        {status ? <p className="text-sm text-[#8b7b45] mt-3">{status}</p> : null}
       </div>
     </main>
   );

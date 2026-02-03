@@ -16,13 +16,13 @@ export default function GallerySection() {
       <div className="grid md:grid-cols-3 gap-6">
         {items.map((item) => (
           <div key={item.title} className="card">
-            <div className="h-40 rounded-xl pattern-adras border border-neutral-800" />
-            <h3 className="text-lg font-semibold mt-4">{item.title}</h3>
-            <p className="text-sm text-neutral-400 mt-2">{item.detail}</p>
+            <div className="h-40 rounded-xl pattern-adras border border-[#e2cf9b]" />
+            <h3 className="text-lg font-semibold mt-4 text-[#173a2a]">{item.title}</h3>
+            <p className="text-sm text-[#6b5a2b] mt-2">{item.detail}</p>
           </div>
         ))}
       </div>
-      <p className="text-xs text-neutral-500">
+      <p className="text-xs text-[#8b7b45]">
         Rasmlar o‘rniga vaqtincha bezak fon ishlatildi — real suratlar bilan almashtiring.
       </p>
     </section>

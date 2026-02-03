@@ -2,43 +2,52 @@ import Link from 'next/link';
 
 export default function Hero() {
   return (
-    <section className="section py-16 grid md:grid-cols-2 gap-10 items-center">
-      <div>
-        <p className="text-brand-500 font-semibold">BUKHARAREST.UZ</p>
-          <h1 className="text-4xl md:text-5xl font-semibold leading-tight">
-            Buxoro taomlari, mayin muhit va zamonaviy servis
-          </h1>
-        <p className="text-neutral-300 mt-4">
-            Milliy taomlar, tezkor yetkazib berish, oldindan bron qilish va tadbirlar uchun puxta xizmat.
+    <section className="section py-16 grid lg:grid-cols-2 gap-12 items-center">
+      <div className="space-y-6">
+        <span className="badge">BUKHARAREST.UZ</span>
+        <h1 className="text-4xl md:text-5xl font-semibold leading-tight text-[#173a2a]">
+          Buxoro taomlari, mayin muhit va zamonaviy servis
+        </h1>
+        <p className="text-[#6b5a2b] text-lg">
+          Milliy taomlar, tezkor yetkazib berish, oldindan bron qilish va
+          tadbirlar uchun puxta xizmat.
         </p>
-        <div className="mt-6 flex flex-wrap gap-4">
-            <Link href="/booking" className="button">Stol band qilish</Link>
-            <Link href="/menu" className="button-outline">Menyuni ko‘rish</Link>
+        <div className="flex flex-wrap gap-4">
+          <Link href="/reservation" className="button">Stol band qilish</Link>
+          <Link href="/menu" className="button-outline">Menyuni ko‘rish</Link>
+          <Link href="/order" className="button-outline">Yetkazib berish</Link>
+        </div>
+        <div className="grid sm:grid-cols-3 gap-4">
+          <div className="card">
+            <p className="text-xs text-[#7a6b3b]">Xizmat</p>
+            <p className="text-lg font-semibold">Premium servis</p>
+          </div>
+          <div className="card">
+            <p className="text-xs text-[#7a6b3b]">Yetkazib berish</p>
+            <p className="text-lg font-semibold">15–30 min</p>
+          </div>
+          <div className="card">
+            <p className="text-xs text-[#7a6b3b]">Bron</p>
+            <p className="text-lg font-semibold">Online</p>
+          </div>
         </div>
       </div>
       <div className="card">
-        <div className="h-64 rounded-xl bg-gradient-to-br from-brand-500/20 via-neutral-900 to-neutral-950 border border-neutral-800 flex items-center justify-center relative overflow-hidden">
-          <svg
-            viewBox="0 0 240 240"
-            className="h-56 w-56 text-brand-500/60"
-            aria-hidden="true"
-          >
-            <path
-              fill="currentColor"
-              d="M114 18h12l4 10h18v10h-10v20h10v10h-12v16h8v10h-8v18h8v10h-8v24h8v10h-8v20h18v10h-50v-10h18v-20h-8v-10h8v-24h-8v-10h8v-18h-8v-10h8V68h-12V58h10V38h-10V28h18l4-10z"
-            />
-            <rect x="90" y="208" width="60" height="10" fill="currentColor" />
-          </svg>
-          <span className="absolute bottom-4 text-xs text-neutral-400">Minorai Kalon silueti</span>
+        <div className="h-72 rounded-2xl pattern-adras border border-[#d8c08a] flex items-center justify-center relative overflow-hidden">
+          <div className="text-center">
+            <p className="text-sm text-[#6b5a2b]">Buxoro ruhi</p>
+            <p className="text-3xl font-semibold text-[#173a2a]">BUKHARA REST</p>
+            <p className="text-xs text-[#7a6b3b] mt-2">Milliy ta’m va zamonaviy xizmat</p>
+          </div>
         </div>
         <div className="mt-6 grid grid-cols-2 gap-4">
-          <div className="rounded-xl border border-neutral-800 p-4">
-            <p className="text-sm text-neutral-400">Yetkazib berish</p>
-            <p className="text-2xl font-semibold">15-30 min</p>
+          <div className="rounded-xl border border-[#e2cf9b] bg-white/70 p-4">
+            <p className="text-xs text-[#7a6b3b]">Maxsus taom</p>
+            <p className="text-lg font-semibold">Buxoro palovi</p>
           </div>
-          <div className="rounded-xl border border-neutral-800 p-4">
-            <p className="text-sm text-neutral-400">Bronlar</p>
-            <p className="text-2xl font-semibold">Online</p>
+          <div className="rounded-xl border border-[#e2cf9b] bg-white/70 p-4">
+            <p className="text-xs text-[#7a6b3b]">Ish vaqti</p>
+            <p className="text-lg font-semibold">09:00–23:00</p>
           </div>
         </div>
       </div>

@@ -43,8 +43,8 @@ export default function OrderPage() {
     <main className="section py-16 space-y-8">
       <div className="page-hero">
         <span className="badge">BUYURTMA</span>
-        <h1 className="text-3xl font-semibold mt-4">Buyurtma berish</h1>
-        <p className="text-neutral-400 mt-2">Taomlar ro‘yxatini kiriting va buyurtmani yuboring.</p>
+        <h1 className="text-3xl font-semibold mt-4 text-[#173a2a]">Buyurtma berish</h1>
+        <p className="text-[#6b5a2b] mt-2">Taomlar ro‘yxatini kiriting va buyurtmani yuboring.</p>
       </div>
 
       <div className="card max-w-3xl mx-auto space-y-4">
@@ -83,10 +83,10 @@ export default function OrderPage() {
         </div>
         <div className="flex flex-wrap items-center justify-between gap-3">
           <button onClick={addItem} className="button-outline">Yana qo‘shish</button>
-          <div className="text-sm text-neutral-500">Jami: <span className="font-semibold text-[#173a2a]">{total.toLocaleString()} so'm</span></div>
+          <div className="text-sm text-[#8b7b45]">Jami: <span className="font-semibold text-[#173a2a]">{total.toLocaleString()} so'm</span></div>
           <button onClick={submit} className="button">Buyurtma berish</button>
         </div>
-        {message && <p className="text-sm text-neutral-500">{message}</p>}
+        {message && <p className="text-sm text-[#8b7b45]">{message}</p>}
       </div>
     </main>
   );
