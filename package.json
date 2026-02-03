@@ -1,17 +1,21 @@
 {
-  "name": "bukhararest",
+  "name": "rest",
+  "version": "1.0.0",
+  "description": "BUKHARA REST full-stack monorepo",
   "private": true,
   "workspaces": [
-    "apps/web",
-    "apps/api"
+    "apps/*",
+    "packages/*"
   ],
   "scripts": {
-    "dev": "concurrently \"npm run dev -w apps/api\" \"npm run dev -w apps/web\"",
-    "build": "npm run build -w apps/web",
-    "start": "npm run start -w apps/api",
-    "test": "npm run test -w apps/api"
+    "dev": "npm run dev --workspaces --if-present",
+    "dev:web": "npm run dev --workspace apps/web",
+    "dev:api": "npm run start:dev --workspace apps/api",
+    "dev:bots": "npm run dev --workspace apps/bots",
+    "build": "npm run build --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present"
   },
-  "devDependencies": {
-    "concurrently": "^8.2.2"
-  }
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
