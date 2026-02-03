@@ -42,10 +42,18 @@ export default function OrderPage() {
   return (
     <main className="section py-16 space-y-8">
       <div className="page-hero">
-        <span className="badge">BUYURTMA</span>
-        <h1 className="text-3xl font-semibold mt-4 text-[#173a2a]">Buyurtma berish</h1>
-        <p className="text-[#6b5a2b] mt-2">Taomlar ro‘yxatini kiriting va buyurtmani yuboring.</p>
+        <span className="badge">SAVAT</span>
+        <h1 className="text-3xl font-semibold mt-4 text-white">Savat</h1>
+        <p className="text-[#9aa0aa] mt-2">Hozirda savatingizdagi buyurtmalar.</p>
       </div>
+
+      {items.every((item) => !item.name) ? (
+        <div className="card text-center py-16">
+          <div className="text-4xl">🧾</div>
+          <h2 className="text-xl font-semibold text-white mt-4">Bo'sh</h2>
+          <p className="text-[#9aa0aa] mt-2">Hozirda savatingizda mahsulot yo‘q.</p>
+        </div>
+      ) : null}
 
       <div className="card max-w-3xl mx-auto space-y-4">
         <input
@@ -83,10 +91,10 @@ export default function OrderPage() {
         </div>
         <div className="flex flex-wrap items-center justify-between gap-3">
           <button onClick={addItem} className="button-outline">Yana qo‘shish</button>
-          <div className="text-sm text-[#8b7b45]">Jami: <span className="font-semibold text-[#173a2a]">{total.toLocaleString()} so'm</span></div>
+          <div className="text-sm text-[#9aa0aa]">Jami: <span className="font-semibold text-white">{total.toLocaleString()} so'm</span></div>
           <button onClick={submit} className="button">Buyurtma berish</button>
         </div>
-        {message && <p className="text-sm text-[#8b7b45]">{message}</p>}
+        {message && <p className="text-sm text-[#9aa0aa]">{message}</p>}
       </div>
     </main>
   );

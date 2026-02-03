@@ -48,64 +48,46 @@ export default function ProfilePage() {
     <main className="section py-16 space-y-8">
       <div className="page-hero">
         <span className="badge">PROFIL</span>
-        <h1 className="text-3xl font-semibold mt-4 text-[#173a2a]">Mening profilim</h1>
-        <p className="text-[#6b5a2b] mt-2">Buyurtmalar, bronlar va shaxsiy ma’lumotlar.</p>
+        <h1 className="text-3xl font-semibold mt-4 text-white">Profil</h1>
+        <p className="text-[#9aa0aa] mt-2">Sozlamalar va shaxsiy ma’lumotlar.</p>
       </div>
 
       {authChecked && !user ? (
         <div className="card">
-          <p className="text-sm text-[#8b7b45]">Profilni ko‘rish uchun tizimga kiring.</p>
+          <p className="text-sm text-[#9aa0aa]">Profilni ko‘rish uchun tizimga kiring.</p>
         </div>
       ) : null}
 
       {user ? (
         <div className="grid lg:grid-cols-3 gap-6">
           <div className="card lg:col-span-1">
-            <h2 className="text-xl font-semibold">Ma’lumotlar</h2>
-            <div className="mt-4 space-y-2 text-sm text-[#6b5a2b]">
-              <p><span className="text-[#8b7b45]">Ism:</span> {user.displayName || '—'}</p>
-              <p><span className="text-[#8b7b45]">Email:</span> {user.email || '—'}</p>
-              <p><span className="text-[#8b7b45]">Telefon:</span> {user.phoneNumber || '—'}</p>
+            <div className="flex items-center gap-4">
+              <div className="h-14 w-14 rounded-full bg-[#1db954] text-white flex items-center justify-center font-semibold">
+                {user.displayName?.slice(0, 1) || 'B'}
+              </div>
+              <div>
+                <p className="text-lg font-semibold text-white">{user.displayName || 'Mehmon'}</p>
+                <p className="text-sm text-[#9aa0aa]">{user.phoneNumber || user.email || '—'}</p>
+              </div>
             </div>
           </div>
-          <div className="card lg:col-span-2 space-y-6">
-            <div>
-              <h3 className="text-lg font-semibold">Bronlar tarixi</h3>
-              <div className="mt-3 space-y-3">
-                {bookings.length === 0 ? (
-                  <p className="text-sm text-[#8b7b45]">Bronlar yo‘q.</p>
-                ) : (
-                  bookings.map((booking) => (
-                    <div key={booking._id} className="flex flex-wrap items-center justify-between gap-2 border border-[#e2cf9b] rounded-xl px-4 py-3">
-                      <div>
-                        <p className="text-sm font-semibold">{booking.name}</p>
-                        <p className="text-xs text-[#7a6b3b]">{booking.phone}</p>
-                      </div>
-                      <div className="text-xs text-[#7a6b3b]">
-                        {new Date(booking.date).toLocaleDateString('uz-UZ')} • {booking.guests} kishi
-                      </div>
-                      <span className="text-xs text-[#c9a145] uppercase">{booking.status}</span>
-                    </div>
-                  ))
-                )}
-              </div>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold">Buyurtmalar tarixi</h3>
-              <div className="mt-3 space-y-3">
-                {orders.length === 0 ? (
-                  <p className="text-sm text-[#8b7b45]">Buyurtmalar yo‘q.</p>
-                ) : (
-                  orders.map((order) => (
-                    <div key={order._id} className="flex flex-wrap items-center justify-between gap-2 border border-[#e2cf9b] rounded-xl px-4 py-3">
-                      <div className="text-sm">#{order._id.slice(-6)}</div>
-                      <div className="text-xs text-[#7a6b3b]">{new Date(order.createdAt).toLocaleDateString('uz-UZ')}</div>
-                      <div className="text-sm font-semibold text-[#c9a145]">{order.total.toLocaleString()} so‘m</div>
-                      <span className="text-xs text-[#c9a145] uppercase">{order.status}</span>
-                    </div>
-                  ))
-                )}
-              </div>
+          <div className="card lg:col-span-2">
+            <div className="space-y-2">
+              {[
+                'Profil',
+                'Manzil',
+                'Bildirishnoma',
+                'Sevimli taomlarim',
+                'Til',
+                'Qorong‘u rejim',
+                'Qo‘llab-quvvatlash markazi',
+                'Chiqish'
+              ].map((item) => (
+                <div key={item} className="flex items-center justify-between border border-[#2a2f39] rounded-xl px-4 py-3">
+                  <span className="text-sm text-white">{item}</span>
+                  <span className="text-[#6b7280]">›</span>
+                </div>
+              ))}
             </div>
           </div>
         </div>
