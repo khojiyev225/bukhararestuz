@@ -23,4 +23,4 @@ const updateBooking = async (req, res) => {
   res.json({ booking });
 };
 
-module.exports = { listBookings, createBooking, updateBooking };
+module.exports = { listBookings, listMyBookings, createBooking, updateBooking };
