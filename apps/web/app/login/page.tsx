@@ -1,13 +1,16 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { signInWithPopup, signInWithPhoneNumber } from 'firebase/auth';
 import { auth, googleProvider, firebaseReady, createRecaptcha } from '../../lib/firebase';
 
 export default function LoginPage() {
+  const router = useRouter();
   const [phone, setPhone] = useState('');
   const [otp, setOtp] = useState('');
   const [confirmation, setConfirmation] = useState<any>(null);
+  const [message, setMessage] = useState('');
 
   const setupRecaptcha = () => {
     if (!(window as any).recaptchaVerifier) {
@@ -22,11 +25,21 @@ export default function LoginPage() {
     if (!appVerifier) return;
     const result = await signInWithPhoneNumber(auth, phone, appVerifier);
     setConfirmation(result);
+    setMessage('SMS yuborildi. Kodni kiriting.');
   };
 
   const confirmCode = async () => {
     if (!confirmation) return;
     await confirmation.confirm(otp);
+    setMessage('Kirish muvaffaqiyatli. Yo‘naltirilmoqda...');
+    router.push('/profile');
+  };
+
+  const handleGoogle = async () => {
+    if (!auth || !googleProvider) return;
+    await signInWithPopup(auth, googleProvider);
+    setMessage('Kirish muvaffaqiyatli. Yo‘naltirilmoqda...');
+    router.push('/profile');
   };
 
   return (
@@ -63,8 +76,9 @@ export default function LoginPage() {
             <button className="button-outline w-full" onClick={confirmCode}>Tasdiqlash</button>
 
             <div className="grid md:grid-cols-2 gap-3">
-              <button className="button-outline" onClick={() => auth && googleProvider && signInWithPopup(auth, googleProvider)}>Google</button>
+              <button className="button-outline" onClick={handleGoogle}>Google</button>
             </div>
+            {message ? <p className="text-sm text-[#8b7b45]">{message}</p> : null}
           </div>
         )}
         <div id="recaptcha-container" />
