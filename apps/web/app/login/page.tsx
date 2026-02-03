@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { signInWithPopup, signInWithPhoneNumber, RecaptchaVerifier } from 'firebase/auth';
-import { auth, googleProvider, appleProvider, firebaseReady } from '../../lib/firebase';
+import { signInWithPopup, signInWithPhoneNumber } from 'firebase/auth';
+import { auth, googleProvider, firebaseReady, createRecaptcha } from '../../lib/firebase';
 
 export default function LoginPage() {
   const [phone, setPhone] = useState('');
@@ -10,11 +10,8 @@ export default function LoginPage() {
   const [confirmation, setConfirmation] = useState<any>(null);
 
   const setupRecaptcha = () => {
-    if (!auth) return null;
     if (!(window as any).recaptchaVerifier) {
-      (window as any).recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
-        size: 'invisible'
-      });
+      (window as any).recaptchaVerifier = createRecaptcha('recaptcha-container');
     }
     return (window as any).recaptchaVerifier;
   };
@@ -41,7 +38,7 @@ export default function LoginPage() {
       </div>
       <div className="max-w-xl mx-auto card">
         <h1 className="text-2xl font-semibold">Kirish</h1>
-        <p className="text-sm text-neutral-400 mt-2">Telefon, Google yoki Apple orqali.</p>
+        <p className="text-sm text-neutral-400 mt-2">Telefon yoki Google orqali.</p>
 
         {!firebaseReady ? (
           <div className="mt-6 text-sm text-red-300">
@@ -67,7 +64,6 @@ export default function LoginPage() {
 
             <div className="grid md:grid-cols-2 gap-3">
               <button className="button-outline" onClick={() => auth && googleProvider && signInWithPopup(auth, googleProvider)}>Google</button>
-              <button className="button-outline" onClick={() => auth && appleProvider && signInWithPopup(auth, appleProvider)}>Apple</button>
             </div>
           </div>
         )}
