@@ -6,7 +6,7 @@ export default function CourierPage() {
   const [orders, setOrders] = useState<any[]>([]);
   const [message, setMessage] = useState("");
 
-  const base = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3001";
+  const base = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
 
   useEffect(() => {
     const token = localStorage.getItem("token");

@@ -13,7 +13,7 @@ export default function OrderPage() {
   const addItem = () => setItems([...items, { menuItemId: 1, quantity: 1 }]);
 
   const submit = async () => {
-    const base = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3001";
+    const base = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
     const token = localStorage.getItem("token");
     if (!token) {
       setMessage("Iltimos, buyurtma berish uchun tizimga kiring.");

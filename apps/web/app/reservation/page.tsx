@@ -9,7 +9,7 @@ export default function ReservationPage() {
   const [message, setMessage] = useState("");
 
   const submit = async () => {
-    const base = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3001";
+    const base = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
     const token = localStorage.getItem("token");
     if (!token) {
       setMessage("Iltimos, bron qilish uchun tizimga kiring.");
