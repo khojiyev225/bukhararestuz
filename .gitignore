@@ -2,5 +2,8 @@ node_modules/
 apps/web/.next/
 apps/web/out/
 apps/web/.env.local
+apps/web/.env
+apps/api/dist/
 apps/api/.env
+apps/bots/.env
 .env

@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: bukhara_rest_db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: bukhara
+      POSTGRES_PASSWORD: bukhara
+      POSTGRES_DB: bukhara_rest
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
