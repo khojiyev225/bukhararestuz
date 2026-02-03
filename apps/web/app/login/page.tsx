@@ -1,8 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { signInWithPopup, signInWithPhoneNumber } from 'firebase/auth';
+import { onAuthStateChanged, signInWithPopup, signInWithPhoneNumber } from 'firebase/auth';
 import { auth, googleProvider, firebaseReady, createRecaptcha } from '../../lib/firebase';
 
 export default function LoginPage() {
@@ -11,6 +11,17 @@ export default function LoginPage() {
   const [otp, setOtp] = useState('');
   const [confirmation, setConfirmation] = useState<any>(null);
   const [message, setMessage] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (!auth) return undefined;
+    return onAuthStateChanged(auth, (current) => {
+      if (current) {
+        setMessage('Kirish muvaffaqiyatli. Yo‘naltirilmoqda...');
+        router.push('/profile');
+      }
+    });
+  }, [router]);
 
   const setupRecaptcha = () => {
     if (!(window as any).recaptchaVerifier) {
@@ -23,23 +34,44 @@ export default function LoginPage() {
     if (!auth) return;
     const appVerifier = setupRecaptcha();
     if (!appVerifier) return;
-    const result = await signInWithPhoneNumber(auth, phone, appVerifier);
-    setConfirmation(result);
-    setMessage('SMS yuborildi. Kodni kiriting.');
+    setLoading(true);
+    try {
+      const result = await signInWithPhoneNumber(auth, phone, appVerifier);
+      setConfirmation(result);
+      setMessage('SMS yuborildi. Kodni kiriting.');
+    } catch (error) {
+      setMessage('SMS yuborilmadi. Telefon raqam va domain sozlamalarini tekshiring.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   const confirmCode = async () => {
     if (!confirmation) return;
-    await confirmation.confirm(otp);
-    setMessage('Kirish muvaffaqiyatli. Yo‘naltirilmoqda...');
-    router.push('/profile');
+    setLoading(true);
+    try {
+      await confirmation.confirm(otp);
+      setMessage('Kirish muvaffaqiyatli. Yo‘naltirilmoqda...');
+      router.push('/profile');
+    } catch (error) {
+      setMessage('Kod noto‘g‘ri yoki eskirgan. Qayta urinib ko‘ring.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleGoogle = async () => {
     if (!auth || !googleProvider) return;
-    await signInWithPopup(auth, googleProvider);
-    setMessage('Kirish muvaffaqiyatli. Yo‘naltirilmoqda...');
-    router.push('/profile');
+    setLoading(true);
+    try {
+      await signInWithPopup(auth, googleProvider);
+      setMessage('Kirish muvaffaqiyatli. Yo‘naltirilmoqda...');
+      router.push('/profile');
+    } catch (error) {
+      setMessage('Google kirishda xatolik. Firebase Authorized Domains sozlamasini tekshiring.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -65,7 +97,7 @@ export default function LoginPage() {
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
             />
-            <button className="button w-full" onClick={handlePhone}>SMS yuborish</button>
+            <button className="button w-full" onClick={handlePhone} disabled={loading}>SMS yuborish</button>
 
             <input
               className="input"
@@ -73,10 +105,10 @@ export default function LoginPage() {
               value={otp}
               onChange={(e) => setOtp(e.target.value)}
             />
-            <button className="button-outline w-full" onClick={confirmCode}>Tasdiqlash</button>
+            <button className="button-outline w-full" onClick={confirmCode} disabled={loading}>Tasdiqlash</button>
 
             <div className="grid md:grid-cols-2 gap-3">
-              <button className="button-outline" onClick={handleGoogle}>Google</button>
+              <button className="button-outline" onClick={handleGoogle} disabled={loading}>Google</button>
             </div>
             {message ? <p className="text-sm text-[#8b7b45]">{message}</p> : null}
           </div>

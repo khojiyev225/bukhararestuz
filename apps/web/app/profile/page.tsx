@@ -48,13 +48,13 @@ export default function ProfilePage() {
     <main className="section py-16 space-y-8">
       <div className="page-hero">
         <span className="badge">PROFIL</span>
-        <h1 className="text-3xl font-semibold mt-4">Mening profilim</h1>
-        <p className="text-neutral-300 mt-2">Buyurtmalar, bronlar va shaxsiy ma’lumotlar.</p>
+        <h1 className="text-3xl font-semibold mt-4 text-[#173a2a]">Mening profilim</h1>
+        <p className="text-[#6b5a2b] mt-2">Buyurtmalar, bronlar va shaxsiy ma’lumotlar.</p>
       </div>
 
       {authChecked && !user ? (
         <div className="card">
-          <p className="text-sm text-neutral-400">Profilni ko‘rish uchun tizimga kiring.</p>
+          <p className="text-sm text-[#8b7b45]">Profilni ko‘rish uchun tizimga kiring.</p>
         </div>
       ) : null}
 
@@ -62,10 +62,10 @@ export default function ProfilePage() {
         <div className="grid lg:grid-cols-3 gap-6">
           <div className="card lg:col-span-1">
             <h2 className="text-xl font-semibold">Ma’lumotlar</h2>
-            <div className="mt-4 space-y-2 text-sm text-neutral-300">
-              <p><span className="text-neutral-500">Ism:</span> {user.displayName || '—'}</p>
-              <p><span className="text-neutral-500">Email:</span> {user.email || '—'}</p>
-              <p><span className="text-neutral-500">Telefon:</span> {user.phoneNumber || '—'}</p>
+            <div className="mt-4 space-y-2 text-sm text-[#6b5a2b]">
+              <p><span className="text-[#8b7b45]">Ism:</span> {user.displayName || '—'}</p>
+              <p><span className="text-[#8b7b45]">Email:</span> {user.email || '—'}</p>
+              <p><span className="text-[#8b7b45]">Telefon:</span> {user.phoneNumber || '—'}</p>
             </div>
           </div>
           <div className="card lg:col-span-2 space-y-6">
@@ -73,18 +73,18 @@ export default function ProfilePage() {
               <h3 className="text-lg font-semibold">Bronlar tarixi</h3>
               <div className="mt-3 space-y-3">
                 {bookings.length === 0 ? (
-                  <p className="text-sm text-neutral-400">Bronlar yo‘q.</p>
+                  <p className="text-sm text-[#8b7b45]">Bronlar yo‘q.</p>
                 ) : (
                   bookings.map((booking) => (
-                    <div key={booking._id} className="flex flex-wrap items-center justify-between gap-2 border border-neutral-800 rounded-xl px-4 py-3">
+                    <div key={booking._id} className="flex flex-wrap items-center justify-between gap-2 border border-[#e2cf9b] rounded-xl px-4 py-3">
                       <div>
                         <p className="text-sm font-semibold">{booking.name}</p>
-                        <p className="text-xs text-neutral-500">{booking.phone}</p>
+                        <p className="text-xs text-[#7a6b3b]">{booking.phone}</p>
                       </div>
-                      <div className="text-xs text-neutral-400">
+                      <div className="text-xs text-[#7a6b3b]">
                         {new Date(booking.date).toLocaleDateString('uz-UZ')} • {booking.guests} kishi
                       </div>
-                      <span className="text-xs text-brand-500 uppercase">{booking.status}</span>
+                      <span className="text-xs text-[#c9a145] uppercase">{booking.status}</span>
                     </div>
                   ))
                 )}
@@ -94,14 +94,14 @@ export default function ProfilePage() {
               <h3 className="text-lg font-semibold">Buyurtmalar tarixi</h3>
               <div className="mt-3 space-y-3">
                 {orders.length === 0 ? (
-                  <p className="text-sm text-neutral-400">Buyurtmalar yo‘q.</p>
+                  <p className="text-sm text-[#8b7b45]">Buyurtmalar yo‘q.</p>
                 ) : (
                   orders.map((order) => (
-                    <div key={order._id} className="flex flex-wrap items-center justify-between gap-2 border border-neutral-800 rounded-xl px-4 py-3">
+                    <div key={order._id} className="flex flex-wrap items-center justify-between gap-2 border border-[#e2cf9b] rounded-xl px-4 py-3">
                       <div className="text-sm">#{order._id.slice(-6)}</div>
-                      <div className="text-xs text-neutral-400">{new Date(order.createdAt).toLocaleDateString('uz-UZ')}</div>
-                      <div className="text-sm font-semibold text-brand-500">{order.total.toLocaleString()} so‘m</div>
-                      <span className="text-xs text-brand-500 uppercase">{order.status}</span>
+                      <div className="text-xs text-[#7a6b3b]">{new Date(order.createdAt).toLocaleDateString('uz-UZ')}</div>
+                      <div className="text-sm font-semibold text-[#c9a145]">{order.total.toLocaleString()} so‘m</div>
+                      <span className="text-xs text-[#c9a145] uppercase">{order.status}</span>
                     </div>
                   ))
                 )}
