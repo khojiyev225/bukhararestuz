@@ -1,54 +1,70 @@
 "use client";
 
+import { onAuthStateChanged } from "firebase/auth";
 import { useEffect, useState } from "react";
+import { apiFetch } from "../../lib/api";
+import { auth } from "../../lib/firebase";
+
+type Order = {
+  _id: string;
+  deliveryAddress?: string;
+  status: string;
+  total: number;
+  items: { name: string; qty: number }[];
+};
 
 export default function CourierPage() {
-  const [orders, setOrders] = useState<any[]>([]);
+  const [orders, setOrders] = useState<Order[]>([]);
   const [message, setMessage] = useState("");
 
-  const base = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
-
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      setMessage("Courier panelga kirish uchun tizimga kiring.");
-      return;
-    }
-    fetch(`${base}/orders/courier/new`, { headers: { Authorization: `Bearer ${token}` } })
-      .then((r) => r.json())
-      .then(setOrders)
-      .catch(() => setOrders([]));
-  }, [base]);
+    if (!auth) return;
+    return onAuthStateChanged(auth, async (user) => {
+      if (!user) {
+        setMessage("Courier panelga kirish uchun tizimga kiring.");
+        return;
+      }
+      try {
+        const data = await apiFetch("/api/orders");
+        setOrders(data.orders || []);
+      } catch (error) {
+        setOrders([]);
+      }
+    });
+  }, []);
 
-  const updateStatus = async (id: number, status: string) => {
-    const token = localStorage.getItem("token");
-    if (!token) return;
-    await fetch(`${base}/orders/${id}/status`, {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
-      body: JSON.stringify({ status }),
+  const updateStatus = async (id: string, status: string) => {
+    await apiFetch(`/api/orders/${id}`, {
+      method: "PUT",
+      body: JSON.stringify({ status })
     });
   };
 
-  if (message) return <p className="mx-auto max-w-4xl px-4 py-12 text-[#6b5a2b]">{message}</p>;
+  if (message) return <p className="mx-auto max-w-4xl px-4 py-12 text-neutral-500">{message}</p>;
 
   return (
-    <section className="mx-auto max-w-6xl px-4 py-12">
-      <h1 className="text-3xl font-bold text-[#0f2a1b]">Courier Panel</h1>
-      <div className="mt-6 grid gap-4">
+    <main className="section py-16 space-y-8">
+      <div className="page-hero">
+        <span className="badge">DELIVERY</span>
+        <h1 className="text-3xl font-semibold mt-4">Courier panel</h1>
+        <p className="text-neutral-400 mt-2">Yetkazib berish buyurtmalari.</p>
+      </div>
+      <div className="grid gap-4">
         {orders.map((o) => (
-          <div key={o.id} className="rounded-2xl border border-[#d8c08a] bg-white p-4">
-            <p className="text-sm text-[#6b5a2b]">#{o.id}</p>
-            <p className="text-sm text-[#6b5a2b]">{o.address}</p>
-            <p className="text-sm text-[#6b5a2b]">{o.phone}</p>
-            <p className="text-sm text-[#6b5a2b]">{o.itemsSummary}</p>
+          <div key={o._id} className="card">
+            <p className="text-sm text-neutral-500">#{o._id}</p>
+            <p className="text-sm text-neutral-500">Manzil: {o.deliveryAddress || '—'}</p>
+            <p className="text-sm text-neutral-500">Holat: {o.status}</p>
+            <p className="text-sm text-neutral-500">Jami: {o.total?.toLocaleString?.() || 0} so'm</p>
+            <p className="text-sm text-neutral-500">Taomlar: {o.items?.map((i) => `${i.name} x${i.qty}`).join(', ')}</p>
             <div className="mt-3 flex gap-2">
-              <button onClick={() => updateStatus(o.id, "PREPARING")} className="rounded-full border border-[#caa24a] px-3 py-1 text-xs text-[#173a2a]">Qabul</button>
-              <button onClick={() => updateStatus(o.id, "DELIVERED")} className="rounded-full bg-[#173a2a] px-3 py-1 text-xs text-white">Yuborildi</button>
+              <button onClick={() => updateStatus(o._id, "accepted")} className="button-outline">Qabul</button>
+              <button onClick={() => updateStatus(o._id, "in_delivery")} className="button">Yetkazilmoqda</button>
+              <button onClick={() => updateStatus(o._id, "completed")} className="button-outline">Yakunlandi</button>
             </div>
           </div>
         ))}
       </div>
-    </section>
+    </main>
   );
 }

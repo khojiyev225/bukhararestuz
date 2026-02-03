@@ -1,42 +1,44 @@
 "use client";
 
 import { useState } from "react";
+import { apiFetch } from "../../lib/api";
 
 export default function ReservationPage() {
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
   const [date, setDate] = useState("");
-  const [time, setTime] = useState("");
-  const [people, setPeople] = useState(2);
+  const [guests, setGuests] = useState(2);
+  const [notes, setNotes] = useState("");
   const [message, setMessage] = useState("");
 
   const submit = async () => {
-    const base = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
-    const token = localStorage.getItem("token");
-    if (!token) {
-      setMessage("Iltimos, bron qilish uchun tizimga kiring.");
-      return;
-    }
-    const res = await fetch(`${base}/reservations`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
-      body: JSON.stringify({ date, time, people }),
-    });
-    if (!res.ok) {
+    try {
+      await apiFetch("/api/bookings", {
+        method: "POST",
+        body: JSON.stringify({ name, phone, date, guests, notes })
+      });
+      setMessage("Bron yuborildi!");
+    } catch (error) {
       setMessage("Bron yuborilmadi.");
-      return;
     }
-    setMessage("Bron yuborildi!");
   };
 
   return (
-    <section className="mx-auto max-w-3xl px-4 py-12">
-      <h1 className="text-3xl font-bold text-[#0f2a1b]">Bron qilish</h1>
-      <div className="mt-6 grid gap-4 rounded-2xl border border-[#d8c08a] bg-white p-6">
-        <input className="rounded-lg border border-[#d8c08a] px-4 py-3" type="date" value={date} onChange={(e) => setDate(e.target.value)} />
-        <input className="rounded-lg border border-[#d8c08a] px-4 py-3" type="time" value={time} onChange={(e) => setTime(e.target.value)} />
-        <input className="rounded-lg border border-[#d8c08a] px-4 py-3" type="number" min={1} value={people} onChange={(e) => setPeople(Number(e.target.value))} />
-        <button onClick={submit} className="rounded-full bg-[#173a2a] px-4 py-2 text-sm text-white">Bron yuborish</button>
-        {message && <p className="text-sm text-[#6b5a2b]">{message}</p>}
+    <main className="section py-16 space-y-8">
+      <div className="page-hero">
+        <span className="badge">BRON</span>
+        <h1 className="text-3xl font-semibold mt-4">Bron qilish</h1>
+        <p className="text-neutral-400 mt-2">Sana va mehmonlar sonini tanlang.</p>
       </div>
-    </section>
+      <div className="card max-w-3xl mx-auto space-y-4">
+        <input className="input" placeholder="Ism" value={name} onChange={(e) => setName(e.target.value)} />
+        <input className="input" placeholder="Telefon" value={phone} onChange={(e) => setPhone(e.target.value)} />
+        <input className="input" type="date" value={date} onChange={(e) => setDate(e.target.value)} />
+        <input className="input" type="number" min={1} value={guests} onChange={(e) => setGuests(Number(e.target.value))} />
+        <textarea className="textarea" placeholder="Izoh" value={notes} onChange={(e) => setNotes(e.target.value)} />
+        <button onClick={submit} className="button w-full">Bron yuborish</button>
+        {message && <p className="text-sm text-neutral-500">{message}</p>}
+      </div>
+    </main>
   );
 }
